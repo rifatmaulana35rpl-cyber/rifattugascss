@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Rifat</title>
+    <link rel="stylesheet" href="warung css.css">
+</head>
+<body>
+    <div class="menu"
+        <h1></h1><strong>WARUNG RIFAT TAHU BRONTAK</strong></h1>
+        <p>Sedia berbagai macam gorengan</p>
+        <h1>DAFTAR MENU:</h1>
+
+        <div class="item">
+            <p>Tahu Brontak Ayam Suwir - 4000</p>
+            <button onclick="tambah('Tahu Brontak Ayam Suwir', 4000)">tambah</button>
+        </div>
+
+        <div class="item">
+            <p>Tahu Brontak Daging Sapi - 5000</p>
+            <button onclick="tambah('Tahu Brontak Daging Sapi', 5000)">tambah</button>
+        </div>
+
+        <div class="item">
+            <p>Tahu Brontak Telur - 3000</p>
+            <button onclick="tambah('Tahu Brontak Telur', 3000)">tambah</button>
+        </div>
+
+        <h2>Keranjang</h2>
+
+        <div id="keranjang">
+            <p>keranjang masih kosong</p>
+        </div>
+
+        <h3>Total: Rp<span id="total">0</span></h3>
+
+        <button class="checkout" onclick="checkout()">Checkout</button>
+
+        <button class="batal" onclick="batalCheckout()">Batal Checkout</button>
+    </div>
+
+    <script>
+        let keranjang = [];
+        let total = 0;
+
+        function tambah(nama, harga) {
+            keranjang.push(nama);
+            total = total + harga;
+
+            tampilkanKeranjang();
+        }
+
+        function tampilkanKeranjang() {
+            let hasil = "";
+
+            if (keranjang.length === 0) {
+                hasil = "<p>keranjang masih kosong</p>";
+            } else {
+                for (let i = 0; i < keranjang.length; i++) {
+                    hasil += "<p>" + keranjang[i] + "</p>";
+                }
+            }
+            document.getElementById("keranjang").innerHTML = hasil;
+            document.getElementById("total").innerHTML = total.toLocaleString('id-ID');
+        }
+
+        function checkout() {
+            if (keranjang.length === 0) {
+                alert("Keranjang masih kosong!");
+            } else {
+                alert("Checkout berhasil! Total pembayaran Rp" + total.toLocaleString('id-ID'));
+            }
+        }
+
+        function batalCheckout() {
+            keranjang = [];
+            total = 0;
+            tampilkanKeranjang();
+            alert("Checkout dibatalkan!");
+        }
+    </script>
+
+    </body>
+</html>
